@@ -4,39 +4,36 @@ import SwiftData
 struct HistoryView: View {
     let settingsManager: UserSettingsManager
     @Environment(\.dismiss) private var dismiss
-    @State private var showingClearConfirmation = false
+    @State private var viewModel: HistoryViewModel
     
-    var groupedHistory: [Date: [UserHistory]] {
-        let history = settingsManager.getRecentHistory(limit: 100)
-        let calendar = Calendar.current
-        
-        return Dictionary(grouping: history) { entry in
-            calendar.startOfDay(for: entry.timestamp)
-        }
+    init(settingsManager: UserSettingsManager) {
+        self.settingsManager = settingsManager
+        self._viewModel = State(initialValue: HistoryViewModel(settingsManager: settingsManager))
     }
     
     var body: some View {
         NavigationStack {
             List {
-                if groupedHistory.isEmpty {
+                if !viewModel.hasHistory {
+                    let config = viewModel.getEmptyStateConfiguration()
                     VStack(spacing: 16) {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.system(size: 64))
+                        Text(config.emoji)
+                            .font(.system(size: config.emojiSize))
                             .foregroundColor(.gray)
-                        Text("No History Yet")
+                        Text(config.title)
                             .font(.title2)
                             .foregroundColor(.primary)
-                        Text("Your activity will appear here")
+                        Text(config.subtitle)
                             .font(.body)
                             .foregroundColor(.secondary)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 50)
                 } else {
-                    ForEach(groupedHistory.keys.sorted(by: >), id: \.self) { date in
-                        Section(header: Text(formatDate(date))) {
-                            ForEach(groupedHistory[date]?.sorted { $0.timestamp > $1.timestamp } ?? [], id: \.id) { entry in
-                                HistoryRowView(entry: entry)
+                    ForEach(viewModel.sortedDates, id: \.self) { date in
+                        Section(header: Text(viewModel.formatDate(date))) {
+                            ForEach(viewModel.getHistoryEntries(for: date), id: \.id) { entry in
+                                HistoryRowView(entry: entry, viewModel: viewModel)
                             }
                         }
                     }
@@ -51,18 +48,21 @@ struct HistoryView: View {
                     }
                 }
                 
-                if !groupedHistory.isEmpty {
+                if viewModel.hasHistory {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Clear") {
-                            showingClearConfirmation = true
+                            viewModel.showClearConfirmation()
                         }
                         .foregroundColor(.red)
                     }
                 }
             }
-            .confirmationDialog("Clear History", isPresented: $showingClearConfirmation) {
+            .confirmationDialog("Clear History", isPresented: Binding(
+                get: { viewModel.showingClearConfirmation },
+                set: { viewModel.showingClearConfirmation = $0 }
+            )) {
                 Button("Clear All History", role: .destructive) {
-                    settingsManager.clearHistory()
+                    viewModel.clearAllHistory()
                 }
                 Button("Cancel", role: .cancel) { }
             } message: {
@@ -70,30 +70,17 @@ struct HistoryView: View {
             }
         }
     }
-    
-    private func formatDate(_ date: Date) -> String {
-        let calendar = Calendar.current
-        if calendar.isDateInToday(date) {
-            return "Today"
-        } else if calendar.isDateInYesterday(date) {
-            return "Yesterday"
-        } else {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            return formatter.string(from: date)
-        }
-    }
 }
 
 struct HistoryRowView: View {
     let entry: UserHistory
+    let viewModel: HistoryViewModel
     
     var body: some View {
         HStack(spacing: 12) {
-            // Icon based on context
-            Image(systemName: iconForContext(entry.context))
+            Image(systemName: viewModel.iconForContext(entry.context))
                 .font(.title3)
-                .foregroundColor(colorForContext(entry.context))
+                .foregroundColor(viewModel.colorForContext(entry.context))
                 .frame(width: 24, height: 24)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -111,13 +98,13 @@ struct HistoryRowView: View {
                         .font(.caption)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(colorForContext(entry.context).opacity(0.2))
-                        .foregroundColor(colorForContext(entry.context))
+                        .background(viewModel.colorForContext(entry.context).opacity(0.2))
+                        .foregroundColor(viewModel.colorForContext(entry.context))
                         .cornerRadius(4)
                     
                     Spacer()
                     
-                    Text(formatTime(entry.timestamp))
+                    Text(viewModel.formatTime(entry.timestamp))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -126,32 +113,6 @@ struct HistoryRowView: View {
             Spacer()
         }
         .padding(.vertical, 4)
-    }
-    
-    private func iconForContext(_ context: HistoryContext) -> String {
-        switch context {
-        case .settings: return "gear"
-        case .projects: return "folder"
-        case .fabrics: return "square.stack.3d.down.forward"
-        case .patterns: return "doc.text"
-        case .measurements: return "ruler"
-        }
-    }
-    
-    private func colorForContext(_ context: HistoryContext) -> Color {
-        switch context {
-        case .settings: return .blue
-        case .projects: return .green
-        case .fabrics: return .purple
-        case .patterns: return .orange
-        case .measurements: return .red
-        }
-    }
-    
-    private func formatTime(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        return formatter.string(from: date)
     }
 }
 

@@ -26,9 +26,15 @@ struct SewSmartApp: App {
         }
     }()
     
+    @MainActor
+    private var dependencyContainer: DependencyContainer {
+        DependencyContainer(modelContext: sharedModelContainer.mainContext)
+    }
+    
     var body: some Scene {
         WindowGroup {
             AdaptiveContentView()
+                .environmentObject(dependencyContainer)
         }
         .modelContainer(sharedModelContainer)
     }

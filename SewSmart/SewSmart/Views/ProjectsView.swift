@@ -4,8 +4,7 @@ import SwiftData
 struct ProjectsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Project.createdDate, order: .reverse) private var projects: [Project]
-    @State private var showingAddProject = false
-    @State private var selectedProject: Project?
+    @State private var viewModel: ProjectsViewViewModel?
     
     var body: some View {
         NavigationStack {
@@ -23,7 +22,7 @@ struct ProjectsView: View {
                             
                             Spacer()
                             
-                            Button(action: { showingAddProject = true }) {
+                            Button(action: { viewModel?.showAddProject() }) {
                                 Circle()
                                     .fill(Color.white.opacity(0.9))
                                     .frame(width: 44, height: 44)
@@ -64,13 +63,14 @@ struct ProjectsView: View {
                     
                     // Projects List
                     if projects.isEmpty {
+                        let config = viewModel?.getEmptyStateConfiguration()
                         VStack(spacing: 16) {
-                            Text("🎨")
-                                .font(.system(size: 64))
-                            Text("No Projects Yet")
+                            Text(config?.emoji ?? "🎨")
+                                .font(.system(size: config?.emojiSize ?? 64))
+                            Text(config?.title ?? "No Projects Yet")
                                 .font(DesignSystem.titleFont)
                                 .foregroundColor(DesignSystem.primaryTextColor)
-                            Text("Start your sewing journey!")
+                            Text(config?.subtitle ?? "Start your sewing journey!")
                                 .font(DesignSystem.bodyFont)
                                 .foregroundColor(DesignSystem.secondaryTextColor)
                         }
@@ -80,9 +80,9 @@ struct ProjectsView: View {
                         ScrollView {
                             LazyVStack(spacing: DesignSystem.cardSpacing) {
                                 ForEach(projects) { project in
-                                    VibrantProjectRowView(project: project)
+                                    VibrantProjectRowView(project: project, viewModel: viewModel)
                                         .onTapGesture {
-                                            selectedProject = project
+                                            viewModel?.selectProject(project)
                                         }
                                 }
                             }
@@ -94,46 +94,47 @@ struct ProjectsView: View {
                 }
             }
             .navigationBarHidden(true)
-            .sheet(isPresented: $showingAddProject) {
+            .sheet(isPresented: Binding(
+                get: { viewModel?.showingAddProject ?? false },
+                set: { _ in viewModel?.hideAddProject() }
+            )) {
                 AddProjectView()
             }
-            .sheet(item: $selectedProject) { project in
+            .sheet(item: Binding(
+                get: { viewModel?.selectedProject },
+                set: { _ in viewModel?.deselectProject() }
+            )) { project in
                 ProjectDetailView(project: project)
+            }
+            .onAppear {
+                if viewModel == nil {
+                    viewModel = ProjectsViewViewModel(modelContext: modelContext)
+                }
             }
         }
     }
     
     private func deleteProjects(offsets: IndexSet) {
         withAnimation {
-            for index in offsets {
-                modelContext.delete(projects[index])
-            }
+            viewModel?.deleteProjects(at: offsets, from: projects)
         }
     }
 }
 
 struct VibrantProjectRowView: View {
     let project: Project
+    let viewModel: ProjectsViewViewModel?
     
     private var statusColor: Color {
-        DesignSystem.colorForStatus(project.status)
+        viewModel?.statusColor(for: project.status) ?? DesignSystem.colorForStatus(project.status)
     }
     
     private var cardGradient: LinearGradient {
-        DesignSystem.gradientForStatus(project.status)
+        viewModel?.statusGradient(for: project.status) ?? DesignSystem.gradientForStatus(project.status)
     }
     
     private var statusEmoji: String {
-        switch project.status {
-        case .planning:
-            return "🎯"
-        case .inProgress:
-            return "🌸"
-        case .completed:
-            return "🏆"
-        case .onHold:
-            return "⏸️"
-        }
+        viewModel?.statusEmoji(for: project.status) ?? "🎯"
     }
     
     var body: some View {
@@ -222,39 +223,45 @@ struct VibrantProjectRowView: View {
 
 struct ProjectRowView: View {
     let project: Project
+    let viewModel: ProjectsViewViewModel?
     
     var body: some View {
-        VibrantProjectRowView(project: project)
+        VibrantProjectRowView(project: project, viewModel: viewModel)
     }
 }
 
 struct AddProjectView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var name = ""
-    @State private var description = ""
-    @State private var status = ProjectStatus.planning
-    @State private var priority = 0
-    @State private var dueDate = Date()
-    @State private var hasDueDate = false
-    @State private var settingsManager: UserSettingsManager?
+    @State private var viewModel: AddProjectViewModel?
     
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Project Details")) {
-                    TextField("Project Name", text: $name)
-                    TextField("Description", text: $description, axis: .vertical)
+                    TextField("Project Name", text: Binding(
+                        get: { viewModel?.name ?? "" },
+                        set: { viewModel?.name = $0 }
+                    ))
+                    TextField("Description", text: Binding(
+                        get: { viewModel?.description ?? "" },
+                        set: { viewModel?.description = $0 }
+                    ), axis: .vertical)
                         .lineLimit(3...6)
                     
-                    Picker("Status", selection: $status) {
+                    Picker("Status", selection: Binding(
+                        get: { viewModel?.status ?? .planning },
+                        set: { viewModel?.status = $0 }
+                    )) {
                         ForEach(ProjectStatus.allCases, id: \.self) { status in
                             Text(status.rawValue).tag(status)
                         }
                     }
                     
-                    Picker("Priority", selection: $priority) {
+                    Picker("Priority", selection: Binding(
+                        get: { viewModel?.priority ?? 0 },
+                        set: { viewModel?.priority = $0 }
+                    )) {
                         Text("Low").tag(0)
                         Text("Medium").tag(1)
                         Text("High").tag(2)
@@ -263,9 +270,15 @@ struct AddProjectView: View {
                 }
                 
                 Section(header: Text("Timeline")) {
-                    Toggle("Set Due Date", isOn: $hasDueDate)
-                    if hasDueDate {
-                        DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                    Toggle("Set Due Date", isOn: Binding(
+                        get: { viewModel?.hasDueDate ?? false },
+                        set: { viewModel?.hasDueDate = $0 }
+                    ))
+                    if viewModel?.hasDueDate == true {
+                        DatePicker("Due Date", selection: Binding(
+                            get: { viewModel?.dueDate ?? Date() },
+                            set: { viewModel?.dueDate = $0 }
+                        ), displayedComponents: .date)
                     }
                 }
             }
@@ -279,48 +292,26 @@ struct AddProjectView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        saveProject()
+                        if viewModel?.saveProject() == true {
+                            dismiss()
+                        }
                     }
-                    .disabled(name.isEmpty)
+                    .disabled(!(viewModel?.isFormValid ?? false))
                 }
             }
             .onAppear {
-                if settingsManager == nil {
-                    settingsManager = UserSettingsManager(modelContext: modelContext)
+                if viewModel == nil {
+                    viewModel = AddProjectViewModel(modelContext: modelContext)
                 }
             }
         }
-    }
-    
-    private func saveProject() {
-        let newProject = Project(
-            name: name,
-            description: description,
-            status: status,
-            priority: priority
-        )
-        
-        if hasDueDate {
-            newProject.dueDate = dueDate
-        }
-        
-        modelContext.insert(newProject)
-        
-        // Add to history
-        settingsManager?.addHistory(
-            action: .createdProject,
-            details: "\(name) - \(status.rawValue)",
-            context: .projects
-        )
-        
-        dismiss()
     }
 }
 
 struct ProjectDetailView: View {
     @Bindable var project: Project
     @Environment(\.dismiss) private var dismiss
-    @State private var isEditing = false
+    @State private var viewModel = ProjectDetailViewModel()
     
     var body: some View {
         NavigationStack {
@@ -332,7 +323,7 @@ struct ProjectDetailView: View {
                             Text("Status")
                                 .font(.headline)
                             Spacer()
-                            if isEditing {
+                            if viewModel.isEditing {
                                 Picker("Status", selection: $project.status) {
                                     ForEach(ProjectStatus.allCases, id: \.self) { status in
                                         Text(status.rawValue).tag(status)
@@ -350,9 +341,9 @@ struct ProjectDetailView: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Progress: \(Int(project.progress * 100))%")
+                            Text("Progress: \(viewModel.formatProgress(project.progress))")
                                 .font(.subheadline)
-                            if isEditing {
+                            if viewModel.isEditing {
                                 Slider(value: $project.progress, in: 0...1, step: 0.1)
                             } else {
                                 ProgressView(value: project.progress)
@@ -360,11 +351,11 @@ struct ProjectDetailView: View {
                             }
                         }
                         
-                        if isEditing {
+                        if viewModel.isEditing {
                             TextField("Description", text: $project.projectDescription, axis: .vertical)
                                 .textFieldStyle(.roundedBorder)
                                 .lineLimit(4...8)
-                        } else if !project.projectDescription.isEmpty {
+                        } else if viewModel.hasDescription(project) {
                             Text(project.projectDescription)
                                 .font(.body)
                         }
@@ -374,7 +365,7 @@ struct ProjectDetailView: View {
                     .cornerRadius(12)
                     
                     // Photos Section
-                    if !project.photos.isEmpty {
+                    if viewModel.hasPhotos(project) {
                         VStack(alignment: .leading) {
                             Text("Photos")
                                 .font(.headline)
@@ -402,11 +393,11 @@ struct ProjectDetailView: View {
                         Text("Notes")
                             .font(.headline)
                         
-                        if isEditing {
+                        if viewModel.isEditing {
                             TextField("Add notes...", text: $project.notes, axis: .vertical)
                                 .textFieldStyle(.roundedBorder)
                                 .lineLimit(3...10)
-                        } else if project.notes.isEmpty {
+                        } else if !viewModel.hasNotes(project) {
                             Text("No notes yet")
                                 .foregroundColor(.secondary)
                                 .italic()
@@ -430,8 +421,8 @@ struct ProjectDetailView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(isEditing ? "Save" : "Edit") {
-                        isEditing.toggle()
+                    Button(viewModel.isEditing ? "Save" : "Edit") {
+                        viewModel.toggleEditing()
                     }
                 }
             }

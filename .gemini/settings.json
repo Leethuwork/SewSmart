@@ -1,0 +1,16 @@
+{
+  "theme": "GitHub",
+  "selectedAuthType": "oauth-personal",
+  "preferredEditor": "vscode",
+  "mcp_servers": {
+    "XcodeBuildMCP": {
+      "command": "mise",
+      "args": [
+        "x",
+        "npm:xcodebuildmcp@1.12.1",
+        "--",
+        "xcodebuildmcp"
+      ]
+    }
+  }
+}

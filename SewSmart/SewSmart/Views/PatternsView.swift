@@ -4,27 +4,10 @@ import SwiftData
 struct PatternsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Pattern.createdDate, order: .reverse) private var patterns: [Pattern]
-    @State private var showingAddPattern = false
-    @State private var selectedPattern: Pattern?
-    @State private var searchText = ""
-    @State private var selectedCategory: PatternCategory?
+    @State private var viewModel: PatternsViewViewModel?
     
     private var filteredPatterns: [Pattern] {
-        var filtered = patterns
-        
-        if !searchText.isEmpty {
-            filtered = filtered.filter { pattern in
-                pattern.name.localizedCaseInsensitiveContains(searchText) ||
-                pattern.brand.localizedCaseInsensitiveContains(searchText) ||
-                pattern.tags.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-        
-        if let selectedCategory = selectedCategory {
-            filtered = filtered.filter { $0.category == selectedCategory }
-        }
-        
-        return filtered
+        viewModel?.filteredPatterns(from: patterns) ?? patterns
     }
     
     var body: some View {
@@ -44,7 +27,7 @@ struct PatternsView: View {
                         
                         Spacer()
                         
-                        Button(action: { showingAddPattern = true }) {
+                        Button(action: { viewModel?.showAddPattern() }) {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)
                                 .foregroundColor(DesignSystem.primaryPink)
@@ -56,19 +39,19 @@ struct PatternsView: View {
                         HStack(spacing: 12) {
                             CategoryFilterChip(
                                 title: "All",
-                                isSelected: selectedCategory == nil,
+                                isSelected: viewModel?.selectedCategory == nil,
                                 color: .gray
                             ) {
-                                selectedCategory = nil
+                                viewModel?.selectCategory(nil)
                             }
                             
                             ForEach(PatternCategory.allCases, id: \.self) { category in
                                 CategoryFilterChip(
                                     title: category.rawValue,
-                                    isSelected: selectedCategory == category,
-                                    color: categoryColor(for: category)
+                                    isSelected: viewModel?.selectedCategory == category,
+                                    color: viewModel?.categoryColor(for: category) ?? .gray
                                 ) {
-                                    selectedCategory = selectedCategory == category ? nil : category
+                                    viewModel?.selectCategory(category)
                                 }
                             }
                         }
@@ -101,10 +84,9 @@ struct PatternsView: View {
                             
                             Spacer()
                             
-                            if !searchText.isEmpty || selectedCategory != nil {
+                            if viewModel?.hasActiveFilters == true {
                                 Button("Clear filters") {
-                                    searchText = ""
-                                    selectedCategory = nil
+                                    viewModel?.clearFilters()
                                 }
                                 .font(DesignSystem.captionFont)
                                 .foregroundColor(DesignSystem.primaryPink)
@@ -116,13 +98,17 @@ struct PatternsView: View {
                         
                         // Patterns List
                         if filteredPatterns.isEmpty {
+                            let config = (viewModel?.hasActiveFilters == true) ? 
+                                viewModel?.getFilteredEmptyStateConfiguration() : 
+                                viewModel?.getEmptyStateConfiguration()
+                            
                             VStack(spacing: 16) {
-                                Text("📄")
-                                    .font(.system(size: 64))
-                                Text("No Patterns Yet")
+                                Text(config?.emoji ?? "📄")
+                                    .font(.system(size: config?.emojiSize ?? 64))
+                                Text(config?.title ?? "No Patterns Yet")
                                     .font(DesignSystem.titleFont)
                                     .foregroundColor(DesignSystem.primaryTextColor)
-                                Text("Add your first sewing pattern! ✨")
+                                Text(config?.subtitle ?? "Add your first sewing pattern! ✨")
                                     .font(DesignSystem.bodyFont)
                                     .foregroundColor(DesignSystem.secondaryTextColor)
                             }
@@ -134,7 +120,7 @@ struct PatternsView: View {
                                     ForEach(filteredPatterns) { pattern in
                                         VibrantPatternRowView(pattern: pattern)
                                             .onTapGesture {
-                                                selectedPattern = pattern
+                                                viewModel?.selectPattern(pattern)
                                             }
                                     }
                                 }
@@ -146,33 +132,33 @@ struct PatternsView: View {
                 }
             }
             .navigationBarHidden(true)
-            .searchable(text: $searchText, prompt: "Search patterns...")
-            .sheet(isPresented: $showingAddPattern) {
+            .searchable(text: Binding(
+                get: { viewModel?.searchText ?? "" },
+                set: { viewModel?.searchText = $0 }
+            ), prompt: "Search patterns...")
+            .sheet(isPresented: Binding(
+                get: { viewModel?.showingAddPattern ?? false },
+                set: { _ in viewModel?.hideAddPattern() }
+            )) {
                 AddPatternView()
             }
-            .sheet(item: $selectedPattern) { pattern in
+            .sheet(item: Binding(
+                get: { viewModel?.selectedPattern },
+                set: { _ in viewModel?.deselectPattern() }
+            )) { pattern in
                 PatternDetailView(pattern: pattern)
+            }
+            .onAppear {
+                if viewModel == nil {
+                    viewModel = PatternsViewViewModel(modelContext: modelContext)
+                }
             }
         }
     }
     
     private func deletePatterns(offsets: IndexSet) {
         withAnimation {
-            for index in offsets {
-                modelContext.delete(filteredPatterns[index])
-            }
-        }
-    }
-    
-    private func categoryColor(for category: PatternCategory) -> Color {
-        switch category {
-        case .dress: return DesignSystem.primaryPink
-        case .top: return DesignSystem.primaryOrange
-        case .pants: return DesignSystem.primaryTeal
-        case .skirt: return DesignSystem.primaryTeal
-        case .jacket: return DesignSystem.primaryPurple
-        case .accessory: return DesignSystem.primaryYellow
-        case .other: return .gray
+            viewModel?.deletePatterns(at: offsets, from: filteredPatterns)
         }
     }
 }

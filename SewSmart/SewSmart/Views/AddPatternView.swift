@@ -5,37 +5,34 @@ import UniformTypeIdentifiers
 struct AddPatternView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var name = ""
-    @State private var brand = ""
-    @State private var category = PatternCategory.dress
-    @State private var difficulty = PatternDifficulty.beginner
-    @State private var tags = ""
-    @State private var notes = ""
-    @State private var settingsManager: UserSettingsManager?
-    @State private var showingDocumentPicker = false
-    @State private var showingImageOptions = false
-    @State private var showingCamera = false
-    @State private var showingPhotoLibrary = false
-    @State private var selectedFileData: Data?
-    @State private var selectedFileName: String?
-    @State private var selectedFileType: PatternFileType?
-    @State private var selectedImage: UIImage?
+    @State private var viewModel: AddPatternViewModel?
     
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Pattern Details")) {
-                    TextField("Pattern Name", text: $name)
-                    TextField("Brand", text: $brand)
+                    TextField("Pattern Name", text: Binding(
+                        get: { viewModel?.name ?? "" },
+                        set: { viewModel?.name = $0 }
+                    ))
+                    TextField("Brand", text: Binding(
+                        get: { viewModel?.brand ?? "" },
+                        set: { viewModel?.brand = $0 }
+                    ))
                     
-                    Picker("Category", selection: $category) {
+                    Picker("Category", selection: Binding(
+                        get: { viewModel?.category ?? .dress },
+                        set: { viewModel?.category = $0 }
+                    )) {
                         ForEach(PatternCategory.allCases, id: \.self) { category in
                             Text(category.rawValue).tag(category)
                         }
                     }
                     
-                    Picker("Difficulty", selection: $difficulty) {
+                    Picker("Difficulty", selection: Binding(
+                        get: { viewModel?.difficulty ?? .beginner },
+                        set: { viewModel?.difficulty = $0 }
+                    )) {
                         ForEach(PatternDifficulty.allCases, id: \.self) { difficulty in
                             Text(difficulty.rawValue).tag(difficulty)
                         }
@@ -43,13 +40,19 @@ struct AddPatternView: View {
                 }
                 
                 Section(header: Text("Additional Info")) {
-                    TextField("Tags (comma separated)", text: $tags)
-                    TextField("Notes", text: $notes, axis: .vertical)
+                    TextField("Tags (comma separated)", text: Binding(
+                        get: { viewModel?.tags ?? "" },
+                        set: { viewModel?.tags = $0 }
+                    ))
+                    TextField("Notes", text: Binding(
+                        get: { viewModel?.notes ?? "" },
+                        set: { viewModel?.notes = $0 }
+                    ), axis: .vertical)
                         .lineLimit(3...6)
                 }
                 
                 Section(header: Text("Pattern File")) {
-                    if let fileName = selectedFileName, let fileType = selectedFileType {
+                    if let fileName = viewModel?.selectedFileName, let fileType = viewModel?.selectedFileType {
                         HStack {
                             Image(systemName: fileType.icon)
                                 .foregroundColor(.blue)
@@ -62,17 +65,13 @@ struct AddPatternView: View {
                             }
                             Spacer()
                             Button("Remove", role: .destructive) {
-                                selectedFileData = nil
-                                selectedFileName = nil
-                                selectedFileType = nil
-                                selectedImage = nil
+                                viewModel?.removeSelectedFile()
                             }
                         }
                     } else {
                         VStack(spacing: 12) {
                             Button(action: {
-                                selectedFileType = .pdf
-                                showingDocumentPicker = true
+                                viewModel?.selectPDFDocument()
                             }) {
                                 HStack {
                                     Image(systemName: "doc.fill")
@@ -89,10 +88,10 @@ struct AddPatternView: View {
                                 .foregroundColor(.primary)
                                 .cornerRadius(8)
                             }
+                            .buttonStyle(PlainButtonStyle())
                             
                             Button(action: {
-                                selectedFileType = .image
-                                showingImageOptions = true
+                                viewModel?.selectImage()
                             }) {
                                 HStack {
                                     Image(systemName: "photo.fill")
@@ -109,6 +108,7 @@ struct AddPatternView: View {
                                 .foregroundColor(.primary)
                                 .cornerRadius(8)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
@@ -123,81 +123,74 @@ struct AddPatternView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        savePattern()
+                        if viewModel?.savePattern() == true {
+                            dismiss()
+                        }
                     }
-                    .disabled(name.isEmpty)
+                    .disabled(!(viewModel?.isFormValid ?? false))
                 }
             }
             .onAppear {
-                if settingsManager == nil {
-                    settingsManager = UserSettingsManager(modelContext: modelContext)
+                if viewModel == nil {
+                    viewModel = AddPatternViewModel(modelContext: modelContext)
                 }
             }
-            .sheet(isPresented: $showingDocumentPicker) {
+            .sheet(isPresented: Binding(
+                get: { viewModel?.showingDocumentPicker ?? false },
+                set: { viewModel?.showingDocumentPicker = $0 }
+            )) {
                 DocumentPicker(
                     allowedContentTypes: [UTType.pdf],
-                    selectedFileData: $selectedFileData,
-                    selectedFileName: $selectedFileName
+                    selectedFileData: Binding(
+                        get: { viewModel?.selectedFileData },
+                        set: { viewModel?.selectedFileData = $0 }
+                    ),
+                    selectedFileName: Binding(
+                        get: { viewModel?.selectedFileName },
+                        set: { viewModel?.selectedFileName = $0 }
+                    )
                 )
             }
-            .actionSheet(isPresented: $showingImageOptions) {
+            .actionSheet(isPresented: Binding(
+                get: { viewModel?.showingImageOptions ?? false },
+                set: { viewModel?.showingImageOptions = $0 }
+            )) {
                 ActionSheet(
                     title: Text("Add Image"),
                     message: Text("Choose photo source"),
                     buttons: [
                         .default(Text("Take Photo")) {
-                            showingCamera = true
+                            viewModel?.showCamera()
                         },
                         .default(Text("Choose from Library")) {
-                            showingPhotoLibrary = true
+                            viewModel?.showPhotoLibrary()
                         },
                         .cancel()
                     ]
                 )
             }
-            .sheet(isPresented: $showingCamera) {
-                ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+            .sheet(isPresented: Binding(
+                get: { viewModel?.showingCamera ?? false },
+                set: { viewModel?.showingCamera = $0 }
+            )) {
+                ImagePicker(selectedImage: Binding(
+                    get: { viewModel?.selectedImage },
+                    set: { viewModel?.selectedImage = $0 }
+                ), sourceType: .camera)
             }
-            .sheet(isPresented: $showingPhotoLibrary) {
-                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+            .sheet(isPresented: Binding(
+                get: { viewModel?.showingPhotoLibrary ?? false },
+                set: { viewModel?.showingPhotoLibrary = $0 }
+            )) {
+                ImagePicker(selectedImage: Binding(
+                    get: { viewModel?.selectedImage },
+                    set: { viewModel?.selectedImage = $0 }
+                ), sourceType: .photoLibrary)
             }
-            .onChange(of: selectedImage) { newImage in
-                if let image = newImage, let imageData = image.jpegData(compressionQuality: 0.8) {
-                    selectedFileData = imageData
-                    selectedFileName = "pattern_image_\(Date().timeIntervalSince1970).jpg"
-                    selectedFileType = .image
-                }
+            .onChange(of: viewModel?.selectedImage) { newImage in
+                viewModel?.handleImageSelection(newImage)
             }
         }
-    }
-    
-    private func savePattern() {
-        let newPattern = Pattern(
-            name: name,
-            brand: brand,
-            category: category,
-            difficulty: difficulty
-        )
-        newPattern.tags = tags
-        newPattern.notes = notes
-        
-        // Save file data
-        if let fileData = selectedFileData {
-            newPattern.pdfData = fileData
-            newPattern.fileName = selectedFileName
-            newPattern.fileType = selectedFileType
-        }
-        
-        modelContext.insert(newPattern)
-        
-        // Add to history
-        settingsManager?.addHistory(
-            action: .addedPattern,
-            details: "\(name) - \(category.rawValue)",
-            context: .patterns
-        )
-        
-        dismiss()
     }
 }
 

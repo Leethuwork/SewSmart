@@ -72,8 +72,11 @@ enum HistoryAction: String, CaseIterable, Codable {
     case changedLengthUnit = "Changed Length Unit"
     case setDefaultProfile = "Set Default Profile"
     case createdProject = "Created Project"
+    case deletedProject = "Deleted Project"
     case addedFabric = "Added Fabric"
+    case deletedFabric = "Deleted Fabric"
     case addedPattern = "Added Pattern"
+    case deletedPattern = "Deleted Pattern"
     case addedMeasurement = "Added Measurement"
     case updatedMeasurement = "Updated Measurement"
 }
@@ -81,6 +84,7 @@ enum HistoryAction: String, CaseIterable, Codable {
 enum HistoryContext: String, CaseIterable, Codable {
     case settings = "Settings"
     case projects = "Projects"
+    case fabric = "Fabric"
     case fabrics = "Fabrics"
     case patterns = "Patterns"
     case measurements = "Measurements"
