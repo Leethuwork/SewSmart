@@ -6,6 +6,73 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0AA2D3DD2E5B036B006530DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B42E5B036B006530DF /* Preview Assets.xcassets */; };
+		0AA2D3DE2E5B036B006530DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2D38E2E5B036B006530DF /* Assets.xcassets */; };
+		0AA2D3DF2E5B036B006530DF /* iPadSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D02E5B036B006530DF /* iPadSettingsView.swift */; };
+		0AA2D3E02E5B036B006530DF /* PerformanceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D39C2E5B036B006530DF /* PerformanceMonitor.swift */; };
+		0AA2D3E12E5B036B006530DF /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C42E5B036B006530DF /* ButtonStyles.swift */; };
+		0AA2D3E22E5B036B006530DF /* PatternRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D39F2E5B036B006530DF /* PatternRepositoryProtocol.swift */; };
+		0AA2D3E32E5B036B006530DF /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A82E5B036B006530DF /* LoadingState.swift */; };
+		0AA2D3E42E5B036B006530DF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3DA2E5B036B006530DF /* SettingsView.swift */; };
+		0AA2D3E52E5B036B006530DF /* FabricRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D39E2E5B036B006530DF /* FabricRepositoryProtocol.swift */; };
+		0AA2D3E62E5B036B006530DF /* SewSmartError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A92E5B036B006530DF /* SewSmartError.swift */; };
+		0AA2D3E72E5B036B006530DF /* NavigationComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C72E5B036B006530DF /* NavigationComponents.swift */; };
+		0AA2D3E82E5B036B006530DF /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D39A2E5B036B006530DF /* ImageCache.swift */; };
+		0AA2D3E92E5B036B006530DF /* EmptyStateConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3AB2E5B036B006530DF /* EmptyStateConfiguration.swift */; };
+		0AA2D3EA2E5B036B006530DF /* FabricViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BB2E5B036B006530DF /* FabricViewModel.swift */; };
+		0AA2D3EB2E5B036B006530DF /* UserFeedbackSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3962E5B036B006530DF /* UserFeedbackSystem.swift */; };
+		0AA2D3EC2E5B036B006530DF /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B22E5B036B006530DF /* UserSettings.swift */; };
+		0AA2D3ED2E5B036B006530DF /* iPadMeasurementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3CD2E5B036B006530DF /* iPadMeasurementsView.swift */; };
+		0AA2D3EE2E5B036B006530DF /* FabricStashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D42E5B036B006530DF /* FabricStashView.swift */; };
+		0AA2D3EF2E5B036B006530DF /* SewSmartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B82E5B036B006530DF /* SewSmartApp.swift */; };
+		0AA2D3F02E5B036B006530DF /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3AE2E5B036B006530DF /* Pattern.swift */; };
+		0AA2D3F12E5B036B006530DF /* PatternDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D72E5B036B006530DF /* PatternDetailView.swift */; };
+		0AA2D3F22E5B036B006530DF /* ProjectPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B02E5B036B006530DF /* ProjectPhoto.swift */; };
+		0AA2D3F32E5B036B006530DF /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3AF2E5B036B006530DF /* Project.swift */; };
+		0AA2D3F42E5B036B006530DF /* PatternsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D82E5B036B006530DF /* PatternsView.swift */; };
+		0AA2D3F52E5B036B006530DF /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D39B2E5B036B006530DF /* ImageProcessor.swift */; };
+		0AA2D3F62E5B036B006530DF /* MeasurementProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3AD2E5B036B006530DF /* MeasurementProfile.swift */; };
+		0AA2D3F72E5B036B006530DF /* iPadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3CB2E5B036B006530DF /* iPadContentView.swift */; };
+		0AA2D3F82E5B036B006530DF /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C22E5B036B006530DF /* SettingsViewModel.swift */; };
+		0AA2D3F92E5B036B006530DF /* FabricStashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BA2E5B036B006530DF /* FabricStashViewModel.swift */; };
+		0AA2D3FA2E5B036B006530DF /* OptimizedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C82E5B036B006530DF /* OptimizedAsyncImage.swift */; };
+		0AA2D3FB2E5B036B006530DF /* AddPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D22E5B036B006530DF /* AddPatternView.swift */; };
+		0AA2D3FC2E5B036B006530DF /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B12E5B036B006530DF /* ShoppingList.swift */; };
+		0AA2D3FD2E5B036B006530DF /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A52E5B036B006530DF /* InputValidator.swift */; };
+		0AA2D3FE2E5B036B006530DF /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D52E5B036B006530DF /* HistoryView.swift */; };
+		0AA2D3FF2E5B036B006530DF /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C02E5B036B006530DF /* ProjectsViewModel.swift */; };
+		0AA2D4002E5B036B006530DF /* ProjectRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A02E5B036B006530DF /* ProjectRepositoryProtocol.swift */; };
+		0AA2D4012E5B036B006530DF /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A72E5B036B006530DF /* DependencyContainer.swift */; };
+		0AA2D4022E5B036B006530DF /* iPadFabricStashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3CC2E5B036B006530DF /* iPadFabricStashView.swift */; };
+		0AA2D4032E5B036B006530DF /* VibrantPatternRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3DB2E5B036B006530DF /* VibrantPatternRowView.swift */; };
+		0AA2D4042E5B036B006530DF /* AccessibilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3942E5B036B006530DF /* AccessibilityHelper.swift */; };
+		0AA2D4052E5B036B006530DF /* PatternsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BF2E5B036B006530DF /* PatternsViewViewModel.swift */; };
+		0AA2D4062E5B036B006530DF /* FabricCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C52E5B036B006530DF /* FabricCardView.swift */; };
+		0AA2D4072E5B036B006530DF /* PatternRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C92E5B036B006530DF /* PatternRowView.swift */; };
+		0AA2D4082E5B036B006530DF /* MeasurementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D62E5B036B006530DF /* MeasurementsView.swift */; };
+		0AA2D4092E5B036B006530DF /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BC2E5B036B006530DF /* HistoryViewModel.swift */; };
+		0AA2D40A2E5B036B006530DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3932E5B036B006530DF /* ContentView.swift */; };
+		0AA2D40B2E5B036B006530DF /* ProjectsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C12E5B036B006530DF /* ProjectsViewViewModel.swift */; };
+		0AA2D40C2E5B036B006530DF /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D38F2E5B036B006530DF /* DocumentPicker.swift */; };
+		0AA2D40D2E5B036B006530DF /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B62E5B036B006530DF /* UserSettingsManager.swift */; };
+		0AA2D40E2E5B036B006530DF /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D32E5B036B006530DF /* DesignSystem.swift */; };
+		0AA2D40F2E5B036B006530DF /* iPadPatternsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3CE2E5B036B006530DF /* iPadPatternsView.swift */; };
+		0AA2D4102E5B036B006530DF /* DataSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A32E5B036B006530DF /* DataSecurity.swift */; };
+		0AA2D4112E5B036B006530DF /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3C62E5B036B006530DF /* LoadingStateView.swift */; };
+		0AA2D4122E5B036B006530DF /* AddPatternViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3B92E5B036B006530DF /* AddPatternViewModel.swift */; };
+		0AA2D4132E5B036B006530DF /* AdaptiveContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D38D2E5B036B006530DF /* AdaptiveContentView.swift */; };
+		0AA2D4142E5B036B006530DF /* iPadProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3CF2E5B036B006530DF /* iPadProjectsView.swift */; };
+		0AA2D4152E5B036B006530DF /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3D92E5B036B006530DF /* ProjectsView.swift */; };
+		0AA2D4162E5B036B006530DF /* MeasurementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BD2E5B036B006530DF /* MeasurementsViewModel.swift */; };
+		0AA2D4172E5B036B006530DF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3902E5B036B006530DF /* ImagePicker.swift */; };
+		0AA2D4182E5B036B006530DF /* Fabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3AC2E5B036B006530DF /* Fabric.swift */; };
+		0AA2D4192E5B036B006530DF /* OfflineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3982E5B036B006530DF /* OfflineManager.swift */; };
+		0AA2D41A2E5B036B006530DF /* UserSettingsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3A12E5B036B006530DF /* UserSettingsRepositoryProtocol.swift */; };
+		0AA2D41B2E5B036B006530DF /* PatternsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3BE2E5B036B006530DF /* PatternsViewModel.swift */; };
+		0AA2D41C2E5B036B006530DF /* PrintAndShareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2D3912E5B036B006530DF /* PrintAndShareControllers.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0A1576A32E51B16B00C7A01B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,14 +94,73 @@
 		0A1576932E51B16A00C7A01B /* SewSmart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SewSmart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A1576A22E51B16B00C7A01B /* SewSmartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SewSmartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A1576AC2E51B16B00C7A01B /* SewSmartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SewSmartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA2D38D2E5B036B006530DF /* AdaptiveContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveContentView.swift; sourceTree = "<group>"; };
+		0AA2D38E2E5B036B006530DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0AA2D38F2E5B036B006530DF /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		0AA2D3902E5B036B006530DF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0AA2D3912E5B036B006530DF /* PrintAndShareControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintAndShareControllers.swift; sourceTree = "<group>"; };
+		0AA2D3932E5B036B006530DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0AA2D3942E5B036B006530DF /* AccessibilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHelper.swift; sourceTree = "<group>"; };
+		0AA2D3962E5B036B006530DF /* UserFeedbackSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedbackSystem.swift; sourceTree = "<group>"; };
+		0AA2D3982E5B036B006530DF /* OfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineManager.swift; sourceTree = "<group>"; };
+		0AA2D39A2E5B036B006530DF /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		0AA2D39B2E5B036B006530DF /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		0AA2D39C2E5B036B006530DF /* PerformanceMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMonitor.swift; sourceTree = "<group>"; };
+		0AA2D39E2E5B036B006530DF /* FabricRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricRepositoryProtocol.swift; sourceTree = "<group>"; };
+		0AA2D39F2E5B036B006530DF /* PatternRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternRepositoryProtocol.swift; sourceTree = "<group>"; };
+		0AA2D3A02E5B036B006530DF /* ProjectRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryProtocol.swift; sourceTree = "<group>"; };
+		0AA2D3A12E5B036B006530DF /* UserSettingsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsRepositoryProtocol.swift; sourceTree = "<group>"; };
+		0AA2D3A32E5B036B006530DF /* DataSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSecurity.swift; sourceTree = "<group>"; };
+		0AA2D3A52E5B036B006530DF /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
+		0AA2D3A72E5B036B006530DF /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		0AA2D3A82E5B036B006530DF /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		0AA2D3A92E5B036B006530DF /* SewSmartError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SewSmartError.swift; sourceTree = "<group>"; };
+		0AA2D3AB2E5B036B006530DF /* EmptyStateConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateConfiguration.swift; sourceTree = "<group>"; };
+		0AA2D3AC2E5B036B006530DF /* Fabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fabric.swift; sourceTree = "<group>"; };
+		0AA2D3AD2E5B036B006530DF /* MeasurementProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementProfile.swift; sourceTree = "<group>"; };
+		0AA2D3AE2E5B036B006530DF /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		0AA2D3AF2E5B036B006530DF /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		0AA2D3B02E5B036B006530DF /* ProjectPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPhoto.swift; sourceTree = "<group>"; };
+		0AA2D3B12E5B036B006530DF /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
+		0AA2D3B22E5B036B006530DF /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		0AA2D3B42E5B036B006530DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0AA2D3B62E5B036B006530DF /* UserSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
+		0AA2D3B82E5B036B006530DF /* SewSmartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SewSmartApp.swift; sourceTree = "<group>"; };
+		0AA2D3B92E5B036B006530DF /* AddPatternViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatternViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BA2E5B036B006530DF /* FabricStashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricStashViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BB2E5B036B006530DF /* FabricViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BC2E5B036B006530DF /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BD2E5B036B006530DF /* MeasurementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementsViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BE2E5B036B006530DF /* PatternsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternsViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3BF2E5B036B006530DF /* PatternsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternsViewViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3C02E5B036B006530DF /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3C12E5B036B006530DF /* ProjectsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3C22E5B036B006530DF /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0AA2D3C42E5B036B006530DF /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		0AA2D3C52E5B036B006530DF /* FabricCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricCardView.swift; sourceTree = "<group>"; };
+		0AA2D3C62E5B036B006530DF /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
+		0AA2D3C72E5B036B006530DF /* NavigationComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationComponents.swift; sourceTree = "<group>"; };
+		0AA2D3C82E5B036B006530DF /* OptimizedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizedAsyncImage.swift; sourceTree = "<group>"; };
+		0AA2D3C92E5B036B006530DF /* PatternRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternRowView.swift; sourceTree = "<group>"; };
+		0AA2D3CB2E5B036B006530DF /* iPadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadContentView.swift; sourceTree = "<group>"; };
+		0AA2D3CC2E5B036B006530DF /* iPadFabricStashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadFabricStashView.swift; sourceTree = "<group>"; };
+		0AA2D3CD2E5B036B006530DF /* iPadMeasurementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadMeasurementsView.swift; sourceTree = "<group>"; };
+		0AA2D3CE2E5B036B006530DF /* iPadPatternsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadPatternsView.swift; sourceTree = "<group>"; };
+		0AA2D3CF2E5B036B006530DF /* iPadProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadProjectsView.swift; sourceTree = "<group>"; };
+		0AA2D3D02E5B036B006530DF /* iPadSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadSettingsView.swift; sourceTree = "<group>"; };
+		0AA2D3D22E5B036B006530DF /* AddPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatternView.swift; sourceTree = "<group>"; };
+		0AA2D3D32E5B036B006530DF /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		0AA2D3D42E5B036B006530DF /* FabricStashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricStashView.swift; sourceTree = "<group>"; };
+		0AA2D3D52E5B036B006530DF /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		0AA2D3D62E5B036B006530DF /* MeasurementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementsView.swift; sourceTree = "<group>"; };
+		0AA2D3D72E5B036B006530DF /* PatternDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternDetailView.swift; sourceTree = "<group>"; };
+		0AA2D3D82E5B036B006530DF /* PatternsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternsView.swift; sourceTree = "<group>"; };
+		0AA2D3D92E5B036B006530DF /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		0AA2D3DA2E5B036B006530DF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0AA2D3DB2E5B036B006530DF /* VibrantPatternRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrantPatternRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0A1576952E51B16A00C7A01B /* SewSmart */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SewSmart;
-			sourceTree = "<group>";
-		};
 		0A1576A52E51B16B00C7A01B /* SewSmartTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SewSmartTests;
@@ -75,7 +201,17 @@
 		0A15768A2E51B16A00C7A01B = {
 			isa = PBXGroup;
 			children = (
-				0A1576952E51B16A00C7A01B /* SewSmart */,
+				0AA2D38D2E5B036B006530DF /* AdaptiveContentView.swift */,
+				0AA2D38E2E5B036B006530DF /* Assets.xcassets */,
+				0AA2D3922E5B036B006530DF /* Components */,
+				0AA2D3932E5B036B006530DF /* ContentView.swift */,
+				0AA2D3AA2E5B036B006530DF /* Core */,
+				0AA2D3B32E5B036B006530DF /* Models */,
+				0AA2D3B52E5B036B006530DF /* Preview Content */,
+				0AA2D3B72E5B036B006530DF /* Services */,
+				0AA2D3B82E5B036B006530DF /* SewSmartApp.swift */,
+				0AA2D3C32E5B036B006530DF /* ViewModels */,
+				0AA2D3DC2E5B036B006530DF /* Views */,
 				0A1576A52E51B16B00C7A01B /* SewSmartTests */,
 				0A1576AF2E51B16B00C7A01B /* SewSmartUITests */,
 				0A1576942E51B16A00C7A01B /* Products */,
@@ -92,6 +228,187 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0AA2D3922E5B036B006530DF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D38F2E5B036B006530DF /* DocumentPicker.swift */,
+				0AA2D3902E5B036B006530DF /* ImagePicker.swift */,
+				0AA2D3912E5B036B006530DF /* PrintAndShareControllers.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0AA2D3952E5B036B006530DF /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3942E5B036B006530DF /* AccessibilityHelper.swift */,
+			);
+			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		0AA2D3972E5B036B006530DF /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3962E5B036B006530DF /* UserFeedbackSystem.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		0AA2D3992E5B036B006530DF /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3982E5B036B006530DF /* OfflineManager.swift */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
+		0AA2D39D2E5B036B006530DF /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D39A2E5B036B006530DF /* ImageCache.swift */,
+				0AA2D39B2E5B036B006530DF /* ImageProcessor.swift */,
+				0AA2D39C2E5B036B006530DF /* PerformanceMonitor.swift */,
+			);
+			path = Performance;
+			sourceTree = "<group>";
+		};
+		0AA2D3A22E5B036B006530DF /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D39E2E5B036B006530DF /* FabricRepositoryProtocol.swift */,
+				0AA2D39F2E5B036B006530DF /* PatternRepositoryProtocol.swift */,
+				0AA2D3A02E5B036B006530DF /* ProjectRepositoryProtocol.swift */,
+				0AA2D3A12E5B036B006530DF /* UserSettingsRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		0AA2D3A42E5B036B006530DF /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3A32E5B036B006530DF /* DataSecurity.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		0AA2D3A62E5B036B006530DF /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3A52E5B036B006530DF /* InputValidator.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		0AA2D3AA2E5B036B006530DF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3952E5B036B006530DF /* Accessibility */,
+				0AA2D3972E5B036B006530DF /* Feedback */,
+				0AA2D3992E5B036B006530DF /* Offline */,
+				0AA2D39D2E5B036B006530DF /* Performance */,
+				0AA2D3A22E5B036B006530DF /* Repositories */,
+				0AA2D3A42E5B036B006530DF /* Security */,
+				0AA2D3A62E5B036B006530DF /* Validation */,
+				0AA2D3A72E5B036B006530DF /* DependencyContainer.swift */,
+				0AA2D3A82E5B036B006530DF /* LoadingState.swift */,
+				0AA2D3A92E5B036B006530DF /* SewSmartError.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0AA2D3B32E5B036B006530DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3AB2E5B036B006530DF /* EmptyStateConfiguration.swift */,
+				0AA2D3AC2E5B036B006530DF /* Fabric.swift */,
+				0AA2D3AD2E5B036B006530DF /* MeasurementProfile.swift */,
+				0AA2D3AE2E5B036B006530DF /* Pattern.swift */,
+				0AA2D3AF2E5B036B006530DF /* Project.swift */,
+				0AA2D3B02E5B036B006530DF /* ProjectPhoto.swift */,
+				0AA2D3B12E5B036B006530DF /* ShoppingList.swift */,
+				0AA2D3B22E5B036B006530DF /* UserSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0AA2D3B52E5B036B006530DF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3B42E5B036B006530DF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0AA2D3B72E5B036B006530DF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3B62E5B036B006530DF /* UserSettingsManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0AA2D3C32E5B036B006530DF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3B92E5B036B006530DF /* AddPatternViewModel.swift */,
+				0AA2D3BA2E5B036B006530DF /* FabricStashViewModel.swift */,
+				0AA2D3BB2E5B036B006530DF /* FabricViewModel.swift */,
+				0AA2D3BC2E5B036B006530DF /* HistoryViewModel.swift */,
+				0AA2D3BD2E5B036B006530DF /* MeasurementsViewModel.swift */,
+				0AA2D3BE2E5B036B006530DF /* PatternsViewModel.swift */,
+				0AA2D3BF2E5B036B006530DF /* PatternsViewViewModel.swift */,
+				0AA2D3C02E5B036B006530DF /* ProjectsViewModel.swift */,
+				0AA2D3C12E5B036B006530DF /* ProjectsViewViewModel.swift */,
+				0AA2D3C22E5B036B006530DF /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0AA2D3CA2E5B036B006530DF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3C42E5B036B006530DF /* ButtonStyles.swift */,
+				0AA2D3C52E5B036B006530DF /* FabricCardView.swift */,
+				0AA2D3C62E5B036B006530DF /* LoadingStateView.swift */,
+				0AA2D3C72E5B036B006530DF /* NavigationComponents.swift */,
+				0AA2D3C82E5B036B006530DF /* OptimizedAsyncImage.swift */,
+				0AA2D3C92E5B036B006530DF /* PatternRowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0AA2D3D12E5B036B006530DF /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3CB2E5B036B006530DF /* iPadContentView.swift */,
+				0AA2D3CC2E5B036B006530DF /* iPadFabricStashView.swift */,
+				0AA2D3CD2E5B036B006530DF /* iPadMeasurementsView.swift */,
+				0AA2D3CE2E5B036B006530DF /* iPadPatternsView.swift */,
+				0AA2D3CF2E5B036B006530DF /* iPadProjectsView.swift */,
+				0AA2D3D02E5B036B006530DF /* iPadSettingsView.swift */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		0AA2D3DC2E5B036B006530DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0AA2D3CA2E5B036B006530DF /* Components */,
+				0AA2D3D12E5B036B006530DF /* iPad */,
+				0AA2D3D22E5B036B006530DF /* AddPatternView.swift */,
+				0AA2D3D32E5B036B006530DF /* DesignSystem.swift */,
+				0AA2D3D42E5B036B006530DF /* FabricStashView.swift */,
+				0AA2D3D52E5B036B006530DF /* HistoryView.swift */,
+				0AA2D3D62E5B036B006530DF /* MeasurementsView.swift */,
+				0AA2D3D72E5B036B006530DF /* PatternDetailView.swift */,
+				0AA2D3D82E5B036B006530DF /* PatternsView.swift */,
+				0AA2D3D92E5B036B006530DF /* ProjectsView.swift */,
+				0AA2D3DA2E5B036B006530DF /* SettingsView.swift */,
+				0AA2D3DB2E5B036B006530DF /* VibrantPatternRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +423,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				0A1576952E51B16A00C7A01B /* SewSmart */,
 			);
 			name = SewSmart;
 			packageProductDependencies = (
@@ -213,6 +527,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA2D3DD2E5B036B006530DF /* Preview Assets.xcassets in Resources */,
+				0AA2D3DE2E5B036B006530DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +553,68 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA2D3DF2E5B036B006530DF /* iPadSettingsView.swift in Sources */,
+				0AA2D3E02E5B036B006530DF /* PerformanceMonitor.swift in Sources */,
+				0AA2D3E12E5B036B006530DF /* ButtonStyles.swift in Sources */,
+				0AA2D3E22E5B036B006530DF /* PatternRepositoryProtocol.swift in Sources */,
+				0AA2D3E32E5B036B006530DF /* LoadingState.swift in Sources */,
+				0AA2D3E42E5B036B006530DF /* SettingsView.swift in Sources */,
+				0AA2D3E52E5B036B006530DF /* FabricRepositoryProtocol.swift in Sources */,
+				0AA2D3E62E5B036B006530DF /* SewSmartError.swift in Sources */,
+				0AA2D3E72E5B036B006530DF /* NavigationComponents.swift in Sources */,
+				0AA2D3E82E5B036B006530DF /* ImageCache.swift in Sources */,
+				0AA2D3E92E5B036B006530DF /* EmptyStateConfiguration.swift in Sources */,
+				0AA2D3EA2E5B036B006530DF /* FabricViewModel.swift in Sources */,
+				0AA2D3EB2E5B036B006530DF /* UserFeedbackSystem.swift in Sources */,
+				0AA2D3EC2E5B036B006530DF /* UserSettings.swift in Sources */,
+				0AA2D3ED2E5B036B006530DF /* iPadMeasurementsView.swift in Sources */,
+				0AA2D3EE2E5B036B006530DF /* FabricStashView.swift in Sources */,
+				0AA2D3EF2E5B036B006530DF /* SewSmartApp.swift in Sources */,
+				0AA2D3F02E5B036B006530DF /* Pattern.swift in Sources */,
+				0AA2D3F12E5B036B006530DF /* PatternDetailView.swift in Sources */,
+				0AA2D3F22E5B036B006530DF /* ProjectPhoto.swift in Sources */,
+				0AA2D3F32E5B036B006530DF /* Project.swift in Sources */,
+				0AA2D3F42E5B036B006530DF /* PatternsView.swift in Sources */,
+				0AA2D3F52E5B036B006530DF /* ImageProcessor.swift in Sources */,
+				0AA2D3F62E5B036B006530DF /* MeasurementProfile.swift in Sources */,
+				0AA2D3F72E5B036B006530DF /* iPadContentView.swift in Sources */,
+				0AA2D3F82E5B036B006530DF /* SettingsViewModel.swift in Sources */,
+				0AA2D3F92E5B036B006530DF /* FabricStashViewModel.swift in Sources */,
+				0AA2D3FA2E5B036B006530DF /* OptimizedAsyncImage.swift in Sources */,
+				0AA2D3FB2E5B036B006530DF /* AddPatternView.swift in Sources */,
+				0AA2D3FC2E5B036B006530DF /* ShoppingList.swift in Sources */,
+				0AA2D3FD2E5B036B006530DF /* InputValidator.swift in Sources */,
+				0AA2D3FE2E5B036B006530DF /* HistoryView.swift in Sources */,
+				0AA2D3FF2E5B036B006530DF /* ProjectsViewModel.swift in Sources */,
+				0AA2D4002E5B036B006530DF /* ProjectRepositoryProtocol.swift in Sources */,
+				0AA2D4012E5B036B006530DF /* DependencyContainer.swift in Sources */,
+				0AA2D4022E5B036B006530DF /* iPadFabricStashView.swift in Sources */,
+				0AA2D4032E5B036B006530DF /* VibrantPatternRowView.swift in Sources */,
+				0AA2D4042E5B036B006530DF /* AccessibilityHelper.swift in Sources */,
+				0AA2D4052E5B036B006530DF /* PatternsViewViewModel.swift in Sources */,
+				0AA2D4062E5B036B006530DF /* FabricCardView.swift in Sources */,
+				0AA2D4072E5B036B006530DF /* PatternRowView.swift in Sources */,
+				0AA2D4082E5B036B006530DF /* MeasurementsView.swift in Sources */,
+				0AA2D4092E5B036B006530DF /* HistoryViewModel.swift in Sources */,
+				0AA2D40A2E5B036B006530DF /* ContentView.swift in Sources */,
+				0AA2D40B2E5B036B006530DF /* ProjectsViewViewModel.swift in Sources */,
+				0AA2D40C2E5B036B006530DF /* DocumentPicker.swift in Sources */,
+				0AA2D40D2E5B036B006530DF /* UserSettingsManager.swift in Sources */,
+				0AA2D40E2E5B036B006530DF /* DesignSystem.swift in Sources */,
+				0AA2D40F2E5B036B006530DF /* iPadPatternsView.swift in Sources */,
+				0AA2D4102E5B036B006530DF /* DataSecurity.swift in Sources */,
+				0AA2D4112E5B036B006530DF /* LoadingStateView.swift in Sources */,
+				0AA2D4122E5B036B006530DF /* AddPatternViewModel.swift in Sources */,
+				0AA2D4132E5B036B006530DF /* AdaptiveContentView.swift in Sources */,
+				0AA2D4142E5B036B006530DF /* iPadProjectsView.swift in Sources */,
+				0AA2D4152E5B036B006530DF /* ProjectsView.swift in Sources */,
+				0AA2D4162E5B036B006530DF /* MeasurementsViewModel.swift in Sources */,
+				0AA2D4172E5B036B006530DF /* ImagePicker.swift in Sources */,
+				0AA2D4182E5B036B006530DF /* Fabric.swift in Sources */,
+				0AA2D4192E5B036B006530DF /* OfflineManager.swift in Sources */,
+				0AA2D41A2E5B036B006530DF /* UserSettingsRepositoryProtocol.swift in Sources */,
+				0AA2D41B2E5B036B006530DF /* PatternsViewModel.swift in Sources */,
+				0AA2D41C2E5B036B006530DF /* PrintAndShareControllers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

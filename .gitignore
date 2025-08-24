@@ -1,3 +1,7 @@
 *.xcbkptlist
 *.xcuserstate
 SewSmart/CoverageResults.xcresult
+SewSmart/.qoder/.DS_Store
+SewSmart/.DS_Store
+SewSmart/.qoder/quests/.DS_Store
+SewSmart/Assets.xcassets/.DS_Store
